@@ -580,6 +580,13 @@ func main() {
 	http.HandleFunc("/admin/delete", adminDelete)
 	http.HandleFunc("/admin/unbind", adminUnbind)
 
+	if r.URL.Path == "/" || !strings.HasPrefix(r.URL.Path, "/validate") &&
+        !strings.HasPrefix(r.URL.Path, "/verify") &&
+        !strings.HasPrefix(r.URL.Path, "/admin") {
+        fs.ServeHTTP(w, r)
+        return
+    }
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if enableCORS(w, r) {
 			return
