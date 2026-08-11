@@ -1,7 +1,39 @@
-const buttons = document.querySelectorAll(".pay-btn");
+const intro = document.getElementById("intro");
+const card = document.querySelector(".card");
+const musicBtn = document.getElementById("music-btn");
+const music = document.getElementById("bg-music");
 const toast = document.getElementById("toast");
 
-buttons.forEach(btn => {
+let isPlaying = true; // music starts playing after click
+
+// Click to enter
+intro.addEventListener("click", () => {
+  intro.classList.add("fade-out");
+
+  // Reveal main content
+  setTimeout(() => {
+    card.classList.remove("hidden");
+    musicBtn.classList.remove("hidden");
+  }, 300);
+
+  // Start music
+  music.play().catch(() => {});
+});
+
+// Music toggle
+musicBtn.addEventListener("click", () => {
+  if (isPlaying) {
+    music.pause();
+    musicBtn.textContent = "🔇";
+  } else {
+    music.play().catch(() => {});
+    musicBtn.textContent = "🔊";
+  }
+  isPlaying = !isPlaying;
+});
+
+// Payment copy buttons
+document.querySelectorAll(".pay-btn").forEach(btn => {
   btn.addEventListener("click", async () => {
     const text = btn.getAttribute("data-copy");
     if (!text) return;
@@ -9,8 +41,7 @@ buttons.forEach(btn => {
     try {
       await navigator.clipboard.writeText(text);
       showToast("Copied!");
-    } catch (err) {
-      // Fallback for older browsers
+    } catch {
       const textarea = document.createElement("textarea");
       textarea.value = text;
       document.body.appendChild(textarea);
