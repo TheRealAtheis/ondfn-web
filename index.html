@@ -8,13 +8,18 @@
   <link rel="icon" href="icon.png">
 </head>
 <body>
+  <!-- Intro overlay -->
+  <div id="intro" class="intro">
+    <p>Click to view</p>
+  </div>
+
   <div class="background"></div>
 
-  <main class="card">
+  <main class="card hidden">
     <img src="icon.png" alt="Profile" class="avatar">
     
-    <h1 class="name">ond</h1>
-    <p class="bio">100+ Vouches. discord.gg/ondfn</p>
+    <h1 class="name">Your Name</h1>
+    <p class="bio">Short bio or tagline goes here.</p>
 
     <div class="payments">
       <button class="pay-btn" data-copy="https://paypal.me/sylarcr" title="Copy PayPal">
@@ -36,9 +41,18 @@
         <img src="payments/discord.png" alt="Discord">
       </button>
     </div>
-
-    <div id="toast" class="toast hidden">Copied!</div>
   </main>
+
+  <!-- Music -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="music.mp4" type="video/mp4">
+  </audio>
+
+  <button id="music-btn" class="music-btn hidden" title="Toggle music">
+    🔊
+  </button>
+
+  <div id="toast" class="toast hidden">Copied!</div>
 
   <script src="script.js"></script>
 </body>
