@@ -116,3 +116,47 @@ body {
 .hidden {
   display: none;
 }
+
+/* Intro screen */
+.intro {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.intro p {
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.intro.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Hide main content until intro is clicked */
+.card.hidden,
+.music-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+}
+
+.card,
+.music-btn {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
